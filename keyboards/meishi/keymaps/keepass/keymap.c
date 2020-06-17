@@ -37,6 +37,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-void led_set_user(uint8_t usb_led) {
 
+void keyboard_pre_init_user(void) {
+  // Set our LED pins as output
+  setPinOutput(D5);
+  setPinOutput(B0);
+  writePin(D5, 1);
+}
+
+bool led_update_user(led_t led_state) {
+    writePin(B0, led_state.scroll_lock);
+    return false;
 }
