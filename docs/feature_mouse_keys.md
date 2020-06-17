@@ -1,6 +1,6 @@
 # Mouse keys
 
-Mouse keys is a feature that allows you to emulate a mouse using your keyboard. You can move the pointer at different speeds, press 5 buttons and scroll in all 8 directions.
+Mouse keys is a feature that allows you to emulate a mouse using your keyboard. You can move the pointer at different speeds, press 5 buttons and scroll in 8 directions.
 
 ## Adding mouse keys to your keyboard
 
@@ -37,8 +37,6 @@ In your keymap you can use the following keycodes to map key presses to mouse ac
 |`KC_MS_ACCEL1`  |`KC_ACL1`|Set speed to 1   |
 |`KC_MS_ACCEL2`  |`KC_ACL2`|Set speed to 2   |
 
-For an example, see [the mouse layer in this keymap](https://github.com/qmk/qmk_firmware/blob/1df10ae3bfc146805c75b06dc0c126cd1ef3a60a/keyboards/clueboard/66/keymaps/mouse_keys/keymap.c#L40).
-
 ## Configuring mouse keys
 
 Mouse keys supports two different modes to move the cursor:
@@ -60,6 +58,8 @@ This is the default mode. You can adjust the cursor and scrolling acceleration u
 |`MOUSEKEY_INTERVAL`         |50     |Time between cursor movements                            |
 |`MOUSEKEY_MAX_SPEED`        |10     |Maximum cursor speed at which acceleration stops         |
 |`MOUSEKEY_TIME_TO_MAX`      |20     |Time until maximum cursor speed is reached               |
+|`MOUSEKEY_WHEEL_DELAY`      |300    |Delay between pressing a wheel key and wheel movement    |
+|`MOUSEKEY_WHEEL_INTERVAL`   |100    |Time between wheel movements                             |
 |`MOUSEKEY_WHEEL_MAX_SPEED`  |8      |Maximum number of scroll steps per scroll action         |
 |`MOUSEKEY_WHEEL_TIME_TO_MAX`|40     |Time until maximum scroll speed is reached               |
 
@@ -68,6 +68,7 @@ Tips:
 * Setting `MOUSEKEY_DELAY` too low makes the cursor unresponsive. Setting it too high makes small movements difficult.
 * For smoother cursor movements, lower the value of `MOUSEKEY_INTERVAL`. If the refresh rate of your display is 60Hz, you could set it to `16` (1/60). As this raises the cursor speed significantly, you may want to lower `MOUSEKEY_MAX_SPEED`.
 * Setting `MOUSEKEY_TIME_TO_MAX` or `MOUSEKEY_WHEEL_TIME_TO_MAX` to `0` will disable acceleration for the cursor or scrolling respectively. This way you can make one of them constant while keeping the other accelerated, which is not possible in constant speed mode.
+* Setting `MOUSEKEY_WHEEL_INTERVAL` too low will make scrolling too fast. Setting it too high will make scrolling too slow when the wheel key is held down.
 
 Cursor acceleration uses the same algorithm as the X Window System MouseKeysAccel feature. You can read more about it [on Wikipedia](https://en.wikipedia.org/wiki/Mouse_keys).
 
